@@ -12,7 +12,7 @@
     imports
 */
 import { defineComponent } from "vue"
-import { useStorePosts } from "../store/storePost"
+import { useStorePosts } from "../../store/storePost"
 
 export default defineComponent({
   name: "PostList",
