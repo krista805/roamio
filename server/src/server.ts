@@ -1,27 +1,18 @@
-import dotenv from "dotenv"
-import express, { Application, Request, Response, NextFunction } from "express"
+import express from "express"
 import cors from "cors"
-import bodyParser from "body-parser"
 import mongoose from "mongoose"
+import tripsRouter from "./api/trips/trips.routes"
 
-dotenv.config()
-const app: Application = express()
+const app = express()
+const port = 8000
 
+app.use(express.json())
 app.use(cors())
-app.use(bodyParser.json())
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect("mongodb://localhost/mydatabase")
 
-const db = mongoose.connection
-db.on("error", console.error.bind(console, "connection error:"))
-db.once("open", () => {
-  console.log("Connected to MongoDB")
-})
+app.use("/api/trips", tripsRouter)
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`)
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`)
 })
