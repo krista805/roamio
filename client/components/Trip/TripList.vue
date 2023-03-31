@@ -25,6 +25,7 @@
                   {{ trip.title }}
                 </div>
                 <div>{{ trip.start_date }} - {{ trip.end_date }}</div>
+                <nuxt-link :to="`/trips/${trip.slug}`">View Trip</nuxt-link>
               </v-card-text>
             </v-img>
           </v-card>
@@ -38,10 +39,11 @@
 /*
     Imports
 */
-import { defineComponent, ref } from "vue"
+// import { defineComponent } from "vue"
 
 interface Trip {
   id: number
+  slug: string
   title: string
   location: string
   img_url?: string
@@ -57,6 +59,7 @@ export default defineComponent({
       {
         id: 1,
         title: "Trip to Portugal",
+        slug: "trip-to-portugal",
         location: "Portugal",
         start_date: "Sep 10 2015",
         end_date: "Dec 24 2015",
@@ -65,6 +68,7 @@ export default defineComponent({
       },
       {
         id: 2,
+        slug: "amazing-europe",
         title: "Amazing Europe",
         location: "Spain, France, Italy",
         start_date: "Sep 10 2015",
@@ -73,6 +77,7 @@ export default defineComponent({
       },
       {
         id: 3,
+        slug: "exotic-wonders",
         title: "Exotic Wonders",
         location: "India",
         start_date: "Sep 10 2015",
