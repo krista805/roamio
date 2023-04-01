@@ -9,7 +9,7 @@ const port = 8000
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb://localhost/mydatabase")
+mongoose.connect("mongodb://localhost/roamio")
 
 app.use("/api/trips", tripsRouter)
 

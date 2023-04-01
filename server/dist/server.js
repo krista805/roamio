@@ -11,7 +11,7 @@ const app = (0, express_1.default)();
 const port = 8000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-mongoose_1.default.connect("mongodb://localhost/mydatabase");
+mongoose_1.default.connect("mongodb://localhost/roamio");
 app.use("/api/trips", trips_routes_1.default);
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
