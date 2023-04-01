@@ -10,7 +10,7 @@ export interface ITrip extends Document {
 }
 
 const TripSchema = new Schema({
-  slug: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   startDate: { type: Date, required: true },

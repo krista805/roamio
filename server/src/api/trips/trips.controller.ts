@@ -30,15 +30,13 @@ module.exports = {
     }
   },
   // This function handles the GET request to retrieve a specific trip by its ID.
-  getTripById: async (req: Request, res: Response) => {
+  getTripBySlug: async (req: Request, res: Response) => {
+    const { tripSlug } = req.params
     try {
-      const trip = await Trip.findById(req.params.id)
-      if (trip == null) {
-        return res.status(404).json({ message: "Trip not found" })
-      }
-      res.json(trip)
+      const trip = await Trip.findOne({ slug: tripSlug })
+      res.status(200).json(trip)
     } catch (err: any) {
-      res.status(500).json({ message: err.message })
+      res.status(500).json({ error: err.message })
     }
   },
 }
