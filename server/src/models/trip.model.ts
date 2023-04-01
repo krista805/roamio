@@ -1,6 +1,7 @@
 import { Schema, model, Document } from "mongoose"
 
 export interface ITrip extends Document {
+  slug: string
   title: string
   description: string
   startDate: Date
@@ -9,6 +10,7 @@ export interface ITrip extends Document {
 }
 
 const TripSchema = new Schema({
+  slug: { type: String, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   startDate: { type: Date, required: true },

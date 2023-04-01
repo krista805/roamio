@@ -5,18 +5,21 @@ mongoose.connect("mongodb://localhost/roamio", { useNewUrlParser: true })
 
 const trips = [
   {
+    slug: "road-trip-pacific-coast-highway",
     title: "Road trip along the Pacific Coast Highway",
     description: "Drive along the coast from San Francisco to San Diego",
     startDate: new Date("2022-06-01"),
     endDate: new Date("2022-06-10"),
   },
   {
+    slug: "hiking-yosemite-national-park",
     title: "Hiking in Yosemite National Park",
     description: "Explore the stunning natural beauty of Yosemite",
     startDate: new Date("2022-07-01"),
     endDate: new Date("2022-07-08"),
   },
   {
+    slug: "skiing-in-whistler",
     title: "Skiing in Whistler",
     description: "Hit the slopes at one of North America's top ski resorts",
     startDate: new Date("2022-12-15"),
