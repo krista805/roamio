@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-list v-for="trip in trips" :key="trip.id">
+      <v-list v-for="trip in tripsArray" :key="trip.id">
         <v-list-item to="/dashboard">
           <v-card width="400">
             <v-img height="200" :src="trip.img_url" cover class="text-white">
@@ -20,14 +20,14 @@
                   </v-menu>
                 </template>
               </v-toolbar>
-              <v-card-text class="text-center">
-                <div class="font-weight-bold ms-1 mb-2 text-uppercase">
-                  {{ trip.title }}
-                </div>
-                <div>{{ trip.start_date }} - {{ trip.end_date }}</div>
-                <nuxt-link :to="`/trips/${trip.slug}`">View Trip</nuxt-link>
-              </v-card-text>
             </v-img>
+            <v-card-text class="text-center">
+              <div class="font-weight-bold ms-1 mb-2 text-uppercase font-dark">
+                {{ trip.title }}
+              </div>
+              <div>{{ trip.startDate }} - {{ trip.endDate }}</div>
+              <nuxt-link :to="`/trips/${trip.slug}`">View Trip</nuxt-link>
+            </v-card-text>
           </v-card>
         </v-list-item>
       </v-list>
@@ -39,55 +39,19 @@
 /*
     Imports
 */
-// import { defineComponent } from "vue"
-
-interface Trip {
-  id: number
-  slug: string
-  title: string
-  location: string
-  img_url?: string
-  start_date: string
-  end_date: string
-}
+import { useStoreTrips } from "../../store/storeTrips"
 
 export default defineComponent({
   name: "TripList",
 
   setup() {
-    const trips = ref<Trip[]>([
-      {
-        id: 1,
-        title: "Trip to Portugal",
-        slug: "trip-to-portugal",
-        location: "Portugal",
-        start_date: "Sep 10 2015",
-        end_date: "Dec 24 2015",
-        img_url:
-          "https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg",
-      },
-      {
-        id: 2,
-        slug: "amazing-europe",
-        title: "Amazing Europe",
-        location: "Spain, France, Italy",
-        start_date: "Sep 10 2015",
-        end_date: "Dec 24 2015",
-        img_url: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-      },
-      {
-        id: 3,
-        slug: "exotic-wonders",
-        title: "Exotic Wonders",
-        location: "India",
-        start_date: "Sep 10 2015",
-        end_date: "Dec 24 2015",
-        img_url: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-      },
-    ])
+    const storeTrips = useStoreTrips()
 
+    storeTrips.fetchTrips()
+
+    const tripsArray = computed(() => storeTrips.tripsArray)
     return {
-      trips,
+      tripsArray,
     }
   },
 })
