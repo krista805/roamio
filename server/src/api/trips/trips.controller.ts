@@ -29,11 +29,14 @@ module.exports = {
       res.status(400).json({ message: err.message })
     }
   },
-  // This function handles the GET request to retrieve a specific trip by its ID.
+  // This function handles the GET request to retrieve a specific trip by its slug.
   getTripBySlug: async (req: Request, res: Response) => {
-    const { tripSlug } = req.params
+    const { slug } = req.params
     try {
-      const trip = await Trip.findOne({ slug: tripSlug })
+      const trip = await Trip.findOne({ slug })
+      if (!trip) {
+        return res.status(404).json({ error: "Trip not found" })
+      }
       res.status(200).json(trip)
     } catch (err: any) {
       res.status(500).json({ error: err.message })
