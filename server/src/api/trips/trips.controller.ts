@@ -15,11 +15,13 @@ module.exports = {
   },
   // This function handles the POST request to create a new trip. It creates a new Trip object with the data provided in the request body
   createTrip: async (req: Request, res: Response) => {
+    // console.log(req.body)
     const trip = new Trip({
+      slug: req.body.slug,
       title: req.body.title,
       description: req.body.description,
-      image: req.body.image,
-      price: req.body.price,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
     })
 
     try {
