@@ -20,8 +20,10 @@ export default defineComponent({
   },
 
   setup() {
+    /*
+        Router
+    */
     const route = useRoute()
-    console.log(route.params.trip_slug)
 
     /*
         Store
@@ -29,8 +31,6 @@ export default defineComponent({
     const storeTrips = useStoreTrips()
 
     let tripData = storeTrips.fetchTrip(route.params.trip_slug.toString())
-
-    console.log("Trip Data" + tripData)
 
     return {
       trip: storeTrips.trip,
