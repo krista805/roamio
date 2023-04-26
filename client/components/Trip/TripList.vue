@@ -2,7 +2,9 @@
   <div>
     <v-row>
       <v-list v-for="trip in tripsArray" :key="trip.id">
-        <v-list-item to="/dashboard">
+        <v-list-item
+          :to="{ name: 'trips-trip_slug', params: { trip_slug: trip.slug } }"
+        >
           <v-card width="400">
             <v-img height="200" :src="trip.img_url" cover class="text-white">
               <v-toolbar color="rgba(0, 0, 0, 0)" theme="dark">
