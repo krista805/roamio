@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="trip">
     <h1>Trip Detail Page</h1>
     {{ trip }}
   </div>
@@ -12,14 +12,7 @@
 import { useStoreTrips } from "../../store/storeTrips"
 
 export default defineComponent({
-  props: {
-    trip: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  setup() {
+  async setup() {
     /*
         Router
     */
@@ -30,7 +23,7 @@ export default defineComponent({
     */
     const storeTrips = useStoreTrips()
 
-    let tripData = storeTrips.fetchTrip(route.params.trip_slug.toString())
+    await storeTrips.fetchTrip(route.params.trip_slug.toString())
 
     return {
       trip: storeTrips.trip,
