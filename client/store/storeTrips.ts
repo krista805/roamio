@@ -24,7 +24,7 @@ export const useStoreTrips = defineStore({
       this.tripsList = await response.json()
     },
     async fetchTrip(slug: string) {
-      const response = await fetch("http://localhost:8000/api/trips/${slug}")
+      const response = await fetch(`http://localhost:8000/api/trips/${slug}`)
       this.trip = await response.json()
     },
   },

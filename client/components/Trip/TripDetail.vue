@@ -18,15 +18,19 @@ export default defineComponent({
       required: true,
     },
   },
+
   setup() {
+    const route = useRoute()
+    console.log(route.params.trip_slug)
+
     /*
         Store
     */
     const storeTrips = useStoreTrips()
 
-    let tripData = storeTrips.fetchTrip(`road-trip-pacific-coast-highway`)
+    let tripData = storeTrips.fetchTrip(route.params.trip_slug.toString())
 
-    console.log(tripData)
+    console.log("Trip Data" + tripData)
 
     return {
       trip: storeTrips.trip,
