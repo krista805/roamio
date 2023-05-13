@@ -2,7 +2,7 @@ import { TripsTripDetail } from "./../.nuxt/components.d"
 import { defineStore } from "pinia"
 
 // define Post
-interface Trip {
+export interface Trip {
   id: number
   slug: string
   title: string
