@@ -2,6 +2,8 @@
   <div v-if="trip">
     <h1>Trip Detail Page</h1>
     {{ trip }}
+
+    <!-- TODO: Shows list of posts within a trip -->
   </div>
 </template>
 
