@@ -35,11 +35,13 @@
 */
 import { Trip } from "../../store/storeTrips"
 import { useStoreTrips } from "../../store/storeTrips"
+import { useRouter } from "vue-router"
 
 export default defineComponent({
   name: "TripForm",
 
   setup() {
+    const router = useRouter()
     const tripStore = useStoreTrips()
 
     const newTrip = ref<Trip>({
@@ -54,6 +56,7 @@ export default defineComponent({
 
     const createTrip = async () => {
       await tripStore.createTrip(newTrip.value)
+      router.push(`/trips/${newTrip.value.slug}`)
       newTrip.value = {
         id: 0,
         slug: "",
@@ -65,11 +68,6 @@ export default defineComponent({
       }
     }
 
-    // const submitForm = async () => {
-    //   // Send `trip` to your API using your preferred HTTP client
-    //   console.log(trip.value)
-    //   await tripStore.createTrip(trip.value)
-    // }
     return {
       newTrip,
       createTrip,

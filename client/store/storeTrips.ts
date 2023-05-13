@@ -30,17 +30,20 @@ export const useStoreTrips = defineStore({
     },
     // TODO: Post Trips
     async createTrip(newTrip: Trip) {
-      let apiUrl = "http://localhost:8000/api/trips"
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newTrip),
-      })
-      const trip = await response.json()
-      console.log("Success", trip)
-      this.tripsList.push(trip)
+      try {
+        let apiUrl = "http://localhost:8000/api/trips"
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newTrip),
+        })
+        const trip = await response.json()
+        this.tripsList.push(trip)
+      } catch (error) {
+        console.error("Error creating trip:", error)
+      }
     },
 
     // TODO: Patch Trips
