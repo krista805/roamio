@@ -20,6 +20,7 @@ module.exports = {
       slug: req.body.slug,
       title: req.body.title,
       description: req.body.description,
+      location: req.body.locaion,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
     })

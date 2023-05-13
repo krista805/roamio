@@ -1,3 +1,4 @@
+import { TripsTripDetail } from "./../.nuxt/components.d"
 import { defineStore } from "pinia"
 
 // define Post
@@ -27,6 +28,22 @@ export const useStoreTrips = defineStore({
       const response = await fetch(`http://localhost:8000/api/trips/${slug}`)
       this.trip = await response.json()
     },
+    // TODO: Post Trips
+    async createTrip(newTrip: Trip) {
+      let apiUrl = "http://localhost:8000/api/trips"
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTrip),
+      })
+      const trip = await response.json()
+      console.log("Success", trip)
+      this.tripsList.push(trip)
+    },
+
+    // TODO: Patch Trips
   },
   getters: {
     tripsArray(): Trip[] {

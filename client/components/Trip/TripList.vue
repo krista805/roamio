@@ -27,6 +27,7 @@
               <div class="font-weight-bold ms-1 mb-2 text-uppercase font-dark">
                 {{ trip.title }}
               </div>
+              <div>{{ trip.location }}</div>
               <div>{{ trip.startDate }} - {{ trip.endDate }}</div>
               <nuxt-link :to="`/trips/${trip.slug}`">View Trip</nuxt-link>
             </v-card-text>
